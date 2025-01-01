@@ -16,9 +16,7 @@ public partial class BookStoreDbContext : DbContext
     }
 
     public virtual DbSet<Author> Authors { get; set; }
-
     public virtual DbSet<Book> Books { get; set; }
-    public virtual DbSet<CLassTable1> CLassTable1 { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
