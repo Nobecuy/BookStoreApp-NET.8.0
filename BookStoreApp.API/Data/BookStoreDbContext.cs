@@ -15,8 +15,8 @@ public partial class BookStoreDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Author> Authors { get; set; }
-    public virtual DbSet<Book> Books { get; set; }
+    public virtual DbSet<Author> Author { get; set; }
+    public virtual DbSet<Book> Book { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -57,7 +57,7 @@ public partial class BookStoreDbContext : DbContext
                 .HasColumnName("title");
             entity.Property(e => e.Year).HasColumnName("year");
 
-            entity.HasOne(d => d.Author).WithMany(p => p.Books)
+            entity.HasOne(d => d.Author).WithMany(p => p.Book)
                 .HasForeignKey(d => d.AuthorId)
                 .HasConstraintName("FK_BookS_ToTable");
         });
