@@ -123,11 +123,20 @@ namespace BookStoreApp.API.Controllers
         [HttpPost]
         public async Task<ActionResult<AuthorCreateDTO>> PostAuthor(AuthorCreateDTO authorDto)
         {
-            var author = mapper.Map<Author>(authorDto);
-            await _context.Author.AddAsync(author);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var author = mapper.Map<Author>(authorDto);
+                await _context.Author.AddAsync(author);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
+                return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+           
         }
 
         // DELETE: api/Authors/5
